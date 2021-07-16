@@ -1,11 +1,14 @@
 {
   "name": "vscode-ui",
-  "version": "1.0.0-p1",
+  "version": "1.0.0-p2",
   "description": "Svelte UI library for vscode webview extension.",
-  "main": "./lib/index.cjs",
-  "module": "./lib/index.mjs",
+  "main": "./lib/index.js",
+  "module": "./lib/index.esm.js",
   "scripts": {
-    "build": "ts-node ./eng/build.ts"
+    "lint": "eslint **/*.ts",
+    "dev": "snowpack dev --config ./eng/snowpack.js",
+    "build": "ts-node ./eng/build.ts",
+    "build:web": "snowpack build --config ./eng/snowpack.js"
   },
   "keywords": [
     "vscode",
@@ -21,8 +24,17 @@
   "files": [
     "lib/"
   ],
+  "eslintConfig": {
+    "extends": "./eng/.eslintrc.json"
+  },
   "devDependencies": {
+    "@snowpack/plugin-svelte": "^3.7.0",
+    "@snowpack/plugin-typescript": "^1.2.1",
+    "@typescript-eslint/eslint-plugin": "^4.28.3",
+    "@typescript-eslint/parser": "^4.28.3",
     "esbuild": "^0.12.15",
+    "eslint": "^7.30.0",
+    "snowpack": "^3.8.2",
     "svelte": "^3.38.3",
     "svelte-preprocess": "^4.7.4",
     "ts-node": "^10.1.0",

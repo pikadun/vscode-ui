@@ -1,6 +1,6 @@
-import { build } from 'esbuild'
-import pkg from '../package.json'
-import svelte from './svelte'
+import { build } from 'esbuild';
+import pkg from '../package.json';
+import svelte from './svelte';
 
 build({
     entryPoints: ['./index.ts'],
@@ -12,7 +12,7 @@ build({
     plugins: [svelte('cjs')],
     logLevel: 'info',
     external: ['svelte']
-})
+});
 
 build({
     entryPoints: ['./index.ts'],
@@ -24,4 +24,4 @@ build({
     plugins: [svelte('esm')],
     logLevel: 'info',
     external: ['svelte']
-})
+});
