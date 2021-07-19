@@ -1,11 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" style="height: 100%;">
+<html lang="en">
 
 <head>
     <title>VSCODE UI - Svelte UI library for vscode webview extension</title>
+    <link rel="stylesheet" href="./theme/monokai.css">
 </head>
-<style>
 
+<style>
+    html {
+        color: var(--vscode-editor-foreground);
+        background: var(--vscode-editor-background);
+    }
 </style>
 
 <body style="height: calc(100% - 16px)">

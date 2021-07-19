@@ -1,6 +1,9 @@
 import 'svelte';
-import App from './index.svelte';
+import App from './page/index.svelte';
+import '../package/main.css';
 
-new App({
+const app = new App({
     target: document.body
 });
+
+export default app;

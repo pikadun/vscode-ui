@@ -4,7 +4,8 @@ const { typescript } = require('svelte-preprocess');
 module.exports = {
     root: '../example',
     mount: {
-        '../example': { url: '/' }
+        '../example': { url: '/' },
+        '../package': { url: '/package' }
     },
     plugins: [
         ['@snowpack/plugin-svelte',
@@ -26,7 +27,7 @@ module.exports = {
         sourcemap: false,
         bundle: true,
         minify: true,
-        target: 'es2020'
+        target: 'esnext'
     },
     buildOptions: {
         out: '../website/',
