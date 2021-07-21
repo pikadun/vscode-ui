@@ -2,9 +2,9 @@
 const { typescript } = require('svelte-preprocess');
 /** @type {import("snowpack").SnowpackUserConfig } */
 module.exports = {
-    root: '../example',
+    root: '../website',
     mount: {
-        '../example': { url: '/' },
+        '../website': { url: '/' },
         '../package': { url: '/package' }
     },
     plugins: [
@@ -23,14 +23,14 @@ module.exports = {
         dest: 'index.html'
     }],
     optimize: {
-        entrypoints: ['./example/index.html'],
+        entrypoints: ['./website/index.html'],
         sourcemap: false,
         bundle: true,
         minify: true,
         target: 'esnext'
     },
     buildOptions: {
-        out: '../website/',
+        out: '../dist/',
         baseUrl: './'
     }
 }
