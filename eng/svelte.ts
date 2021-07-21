@@ -24,7 +24,11 @@ export default function svelte(format: 'esm' | 'cjs'): Plugin {
             build.onLoad({ filter: /\.svelte$/ }, async (args) => {
                 const source = fs.readFileSync(args.path, 'utf-8');
                 const processed = await preprocess(source, typescript(), { filename: args.path });
-                const compilerOptions = { css: true, format, filename: args.path };
+                const compilerOptions = {
+                    css: true,
+                    format,
+                    filename: args.path
+                };
                 const { js, warnings } = compile(processed.code, compilerOptions);
 
                 return {

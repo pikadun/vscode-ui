@@ -5,7 +5,6 @@ import svelte from './svelte';
 build({
     entryPoints: ['./index.ts'],
     format: 'cjs',
-    target: 'esnext',
     bundle: true,
     minify: true,
     outfile: pkg.main,
@@ -17,7 +16,6 @@ build({
 build({
     entryPoints: ['./index.ts'],
     format: 'esm',
-    target: 'esnext',
     bundle: true,
     minify: true,
     outfile: pkg.module,

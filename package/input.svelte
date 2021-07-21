@@ -4,7 +4,6 @@
         | 'text'
         | 'number'
         | 'password'
-        | 'datetime-local'
         | 'textarea' = 'text';
     export let placeholder = '';
     export let value: string | number = '';
@@ -20,10 +19,10 @@
     });
 </script>
 
-<div class="r-input" class:r-input-light={color === 'vscode-light'}>
+<div class="v-input" class:v-input-light={color === 'vscode-light'}>
     {#if type === 'textarea'}
         <textarea
-            class="r-input__textarea"
+            class="v-input__textarea"
             {placeholder}
             {readonly}
             bind:value
@@ -32,7 +31,7 @@
         />
     {:else}
         <input
-            class="r-input__input"
+            class="v-input__input"
             {placeholder}
             {readonly}
             bind:value
@@ -44,17 +43,17 @@
 </div>
 
 <style>
-    .r-input {
+    .v-input {
         display: inline-block;
         margin: 5px 2px;
     }
 
-    .r-input-light {
+    .v-input-light {
         border: 1px solid var(--vscode-settings-textInputBorder);
     }
 
-    .r-input__input,
-    .r-input__textarea {
+    .v-input__input,
+    .v-input__textarea {
         width: 100%;
         height: 100%;
         background: var(--vscode-input-background);
@@ -63,17 +62,17 @@
         padding: 2px 4px;
     }
 
-    .r-input__input:focus,
-    .r-input__textarea:focus {
+    .v-input__input:focus,
+    .v-input__textarea:focus {
         outline: 1px solid var(--vscode-inputOption-activeBorder);
     }
 
-    .r-input__input::placeholder,
-    .r-input__textarea::placeholder {
+    .v-input__input::placeholder,
+    .v-input__textarea::placeholder {
         color: var(--vscode-input-placeholderForeground);
     }
 
-    .r-input__textarea {
+    .v-input__textarea {
         resize: none;
     }
 </style>

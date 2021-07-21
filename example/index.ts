@@ -1,9 +1,13 @@
 import 'svelte';
-import App from './page/index.svelte';
 import '../package/main.css';
+import router from './route/index';
+import App from './app.svelte';
+import Index from './page/index.svelte';
 
-const app = new App({
+router.register([
+    { path: '/', component: Index }
+]);
+
+new App({
     target: document.body
 });
-
-export default app;
