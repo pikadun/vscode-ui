@@ -1,6 +1,3 @@
-<script lang="ts">
-</script>
-
 <div class="introduction">
     <h1>VSCODE UI</h1>
     <p>Svelte UI library for vscode webview extension</p>

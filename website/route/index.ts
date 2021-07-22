@@ -10,17 +10,26 @@ class Router {
     private routes = [] as Route[];
     register(routes: Route[]) {
         this.routes = routes;
-        this.push(window.location.pathname);
+        window.onpopstate = () => { this.renderComponent(); };
+        this.renderComponent();
     }
 
     push(path: string) {
         const r = this.routes.find(route => route.path === path);
         if (r === undefined) {
-            console.error(`Unknown route path: ${path}`);
-            return;
+            throw Error(`Unknown route path: ${path}`);
         }
 
         window.history.pushState(null, document.title, path);
+        route.update(() => r);
+    }
+
+    private renderComponent() {
+        const path = window.location.pathname;
+        const r = this.routes.find(route => route.path === path);
+        if (r === undefined) {
+            return;
+        }
         route.update(() => r);
     }
 }

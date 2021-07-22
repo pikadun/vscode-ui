@@ -2,10 +2,12 @@
     import router from './index';
 
     export let to: string;
+
+    const active = () => {
+        router.push(to);
+    };
 </script>
 
-<slot
-    onclick={() => {
-        router.push(to);
-    }}
-/>
+<span on:click={active}>
+    <slot />
+</span>

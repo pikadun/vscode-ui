@@ -1,16 +1,12 @@
 <script lang="ts">
     import { onMount } from 'svelte';
-    export let type:
-        | 'text'
-        | 'number'
-        | 'password'
-        | 'textarea' = 'text';
+    export let type: 'text' | 'number' | 'password' | 'textarea' = 'text';
     export let placeholder = '';
     export let value: string | number = '';
     export let readonly = false;
+    export let style = '';
 
     const color = document.body.classList[0];
-
     let element: HTMLInputElement;
     onMount(() => {
         if (element) {
@@ -19,7 +15,7 @@
     });
 </script>
 
-<div class="v-input" class:v-input-light={color === 'vscode-light'}>
+<div class="v-input" {style} class:v-input-light={color === 'vscode-light'}>
     {#if type === 'textarea'}
         <textarea
             class="v-input__textarea"
