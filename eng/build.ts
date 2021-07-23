@@ -23,3 +23,10 @@ build({
     logLevel: 'info',
     external: ['svelte']
 });
+
+build({
+    entryPoints: ['./package/main.css'],
+    minify: true,
+    outfile: pkg.style,
+    logLevel: 'info'
+});

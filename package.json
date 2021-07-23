@@ -1,9 +1,10 @@
 {
   "name": "vscode-ui",
-  "version": "1.0.0-p2",
+  "version": "1.0.0-p3",
   "description": "Svelte UI library for vscode webview extension.",
   "main": "./lib/index.js",
   "module": "./lib/index.esm.js",
+  "style": "./lib/main.css",
   "scripts": {
     "lint": "eslint **/*.ts",
     "dev": "snowpack dev --config ./eng/snowpack.js",

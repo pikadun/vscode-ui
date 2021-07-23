@@ -25,7 +25,6 @@ export default function svelte(format: 'esm' | 'cjs'): Plugin {
                 const source = fs.readFileSync(args.path, 'utf-8');
                 const processed = await preprocess(source, typescript(), { filename: args.path });
                 const compilerOptions = {
-                    css: true,
                     format,
                     filename: args.path
                 };
