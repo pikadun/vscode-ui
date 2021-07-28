@@ -27,6 +27,7 @@ module.exports = {
         sourcemap: false,
         bundle: true,
         minify: true,
+        treeshake: true,
         target: 'esnext'
     },
     buildOptions: {
