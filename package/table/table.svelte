@@ -4,6 +4,7 @@
     export let data: Record<any, any>[];
     export let border = false;
     export let overflow: 'hidden' | 'wrap' = 'wrap';
+    export let height = ''
 
     let hiddenColumns: HTMLElement;
     let headerWrapper: HTMLElement;
@@ -51,7 +52,7 @@
     });
 </script>
 
-<div class="v-table" bind:this={tableWrapper}>
+<div class="v-table" bind:this={tableWrapper} style="height: {height};">
     <div class="v-table__hidden-columns" bind:this={hiddenColumns}>
         <slot />
     </div>
@@ -97,7 +98,6 @@
 
 <style>
     .v-table {
-        height: 100%;
         overflow-y: auto;
     }
 
