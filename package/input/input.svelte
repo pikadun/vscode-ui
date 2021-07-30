@@ -34,6 +34,7 @@
             bind:this={element}
             on:click
             on:blur
+            autocomplete="off"
         />
     {/if}
 </div>
