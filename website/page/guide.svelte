@@ -1,5 +1,5 @@
 <script lang="ts">
-    import Input from '../../package/input.svelte';
+    import Input from '../../package/input/input.svelte';
 </script>
 
 <h1>Guide</h1>

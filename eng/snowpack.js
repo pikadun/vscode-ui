@@ -2,7 +2,6 @@
 const { typescript } = require('svelte-preprocess');
 /** @type {import("snowpack").SnowpackUserConfig } */
 module.exports = {
-    root: '../website',
     mount: {
         '../website': { url: '/' },
         '../package': { url: '/package' }
