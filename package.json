@@ -23,8 +23,10 @@
     "url": "https://github.com/pikadun/vscode-ui"
   },
   "files": [
-    "lib/"
+    "lib/",
+    "index.d.ts"
   ],
+  "types": "./index.d.ts",
   "eslintConfig": {
     "extends": "./eng/.eslintrc.json"
   },
