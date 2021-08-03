@@ -1,6 +1,6 @@
 {
   "name": "vscode-ui",
-  "version": "1.0.0-p4",
+  "version": "1.0.0-p6",
   "description": "Svelte UI library for vscode webview extension.",
   "main": "./lib/index.js",
   "module": "./lib/index.esm.js",

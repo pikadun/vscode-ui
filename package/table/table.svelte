@@ -4,15 +4,21 @@
     export let data: Record<any, any>[];
     export let border = false;
     export let overflow: 'hidden' | 'wrap' = 'wrap';
-    export let height = ''
+    export let height = '';
 
-    let hiddenColumns: HTMLElement;
-    let headerWrapper: HTMLElement;
-    let tableWrapper: HTMLElement;
+    export function selectRow(index: number = -1) {
+        selectedRowNumber = index;
+        return data[index];
+    }
+
+    let hiddenColumns: HTMLDivElement;
+    let headerWrapper: HTMLTableElement;
+    let tableWrapper: HTMLDivElement;
     let props: string[] = [];
     let labels: string[] = [];
     let widths: number[] = [];
     let tableWidth = '';
+    let selectedRowNumber = -1;
 
     const calcColumnWidths = (colWidths: number[]) => {
         const tableWidth = headerWrapper.clientWidth;
@@ -69,7 +75,11 @@
         </colgroup>
         <tr>
             {#each labels as label}
-                <th class:v-table--border={border}>{label}</th>
+                <th
+                    class="v-table__cell {border
+                        ? 'v-table--border'
+                        : 'v-table--noborder'}">{label}</th
+                >
             {/each}
         </tr>
     </table>
@@ -83,12 +93,19 @@
                 <col style="width: {width}px;" />
             {/each}
         </colgroup>
-        {#each data as item}
-            <tr>
+        {#each data as item, rowNumber}
+            <tr
+                class="v-table__row"
+                class:v-table__row-selected={rowNumber === selectedRowNumber}
+                on:click={() => {
+                    selectedRowNumber = rowNumber;
+                }}
+            >
                 {#each props as prop}
                     <td
-                        class="v-table__column-{overflow}"
-                        class:v-table--border={border}>{item[prop]}</td
+                        class="v-table__cell v-table__cell-{overflow} {border
+                            ? 'v-table--border'
+                            : 'v-table--noborder'}">{item[prop]}</td
                     >
                 {/each}
             </tr>
@@ -106,6 +123,11 @@
         border-collapse: collapse;
     }
 
+    .v-table--noborder {
+        border-bottom: 1px solid var(--vscode-tree-tableColumnsBorder);
+        border-collapse: collapse;
+    }
+
     .v-table__header-wrapper {
         background: var(--vscode-editor-background);
         position: sticky;
@@ -118,13 +140,26 @@
         table-layout: fixed;
     }
 
-    .v-table__column-hidden {
+    .v-table__row:hover {
+        background: var(--vscode-list-hoverBackground);
+    }
+
+    .v-table__row-selected {
+        background: var(--vscode-list-inactiveSelectionBackground);
+        color: var(--vscode-list-activeSelectionForeground);
+    }
+
+    .v-table__cell {
+        padding: 2px 4px;
+    }
+
+    .v-table__cell-hidden {
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
     }
 
-    .v-table__column-wrap {
+    .v-table__cell-wrap {
         word-break: break-all;
     }
 </style>

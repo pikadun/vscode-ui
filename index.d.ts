@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { SvelteComponentTyped } from 'svelte';
 
 export declare class Input extends SvelteComponentTyped<{
     type?: 'text' | 'number' | 'password' | 'textarea';
     placeholder?: string;
-    value?: string;
+    value?: string | number;
     readonly?: boolean;
     style?: string;
 }, {
@@ -18,10 +19,11 @@ export declare class Button extends SvelteComponentTyped<{
 }> { }
 
 export declare class Table extends SvelteComponentTyped<{
-    data: Record<string, unknown>;
+    data: Record<any, any>[];
     border?: boolean;
     overflow?: 'hidden' | 'wrap';
     height?: string;
+    selectRow: () => Record<any, any> | undefined
 }> { }
 
 
