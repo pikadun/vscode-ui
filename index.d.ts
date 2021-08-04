@@ -13,7 +13,7 @@ export declare class Input extends SvelteComponentTyped<{
 }> { }
 
 export declare class Button extends SvelteComponentTyped<{
-    disabled?: false;
+    disabled?: boolean;
 }, {
     click: WindowEventMap['click'];
 }> { }
@@ -23,12 +23,13 @@ export declare class Table extends SvelteComponentTyped<{
     border?: boolean;
     overflow?: 'hidden' | 'wrap';
     height?: string;
-    selectRow: () => Record<any, any> | undefined
+    selectRow?: () => Record<any, any> | undefined;
 }> { }
 
 
 export declare class Column extends SvelteComponentTyped<{
-    prop: string;
+    type?: 'index';
+    prop?: string;
     label: string;
     width?: string | number;
 }> { }

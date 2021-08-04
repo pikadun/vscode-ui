@@ -17,17 +17,19 @@
     let props: string[] = [];
     let labels: string[] = [];
     let widths: number[] = [];
+    let types: string[] = [];
     let tableWidth = '';
     let selectedRowNumber = -1;
 
-    const calcColumnWidths = (colWidths: number[]) => {
+    const calcColumnWidths = (colWidths: string[]) => {
+        let widths = colWidths.map((w) => parseInt(w));
         const tableWidth = headerWrapper.clientWidth;
-        let declaredCount = colWidths.filter((width) => width !== 0).length;
-        let declaredWidth = colWidths.reduce((p, c) => p + c);
+        let declaredCount = widths.filter((width) => width !== 0).length;
+        let declaredWidth = widths.reduce((p, c) => p + c);
         const remainWidth = tableWidth - declaredWidth;
         const undeclared = props.length - declaredCount;
 
-        const result = colWidths.map((width) => {
+        const result = widths.map((width) => {
             width = width || remainWidth / undeclared;
             return width;
         });
@@ -35,20 +37,23 @@
     };
 
     const aggregateColumnProps = () => {
-        let colProps = [];
-        let colLabels = [];
-        let colWidths = [];
-
+        const attributes: Record<string, any> = {};
         for (let item of hiddenColumns.children) {
             const dataset = (item as HTMLElement).dataset;
-            colProps.push(dataset['prop'] as string);
-            colLabels.push(dataset['label'] as string);
-            colWidths.push(parseInt(dataset['width'] as string));
+
+            Object.entries(dataset).forEach(([attribute, value]) => {
+                if (attributes[attribute] === undefined) {
+                    attributes[attribute] = [value];
+                } else {
+                    attributes[attribute].push(value);
+                }
+            });
         }
 
-        props = colProps;
-        labels = colLabels;
-        widths = calcColumnWidths(colWidths);
+        props = attributes['prop'] as string[];
+        labels = attributes['label'] as string[];
+        widths = calcColumnWidths(attributes['width']);
+        types = attributes['type'] as string[];
     };
 
     onMount(async () => {
@@ -101,12 +106,14 @@
                     selectedRowNumber = rowNumber;
                 }}
             >
-                {#each props as prop}
+                {#each props as prop, index}
                     <td
                         class="v-table__cell v-table__cell-{overflow} {border
                             ? 'v-table--border'
-                            : 'v-table--noborder'}">{item[prop]}</td
+                            : 'v-table--noborder'}"
                     >
+                        {types[index] === 'index' ? rowNumber : item[prop]}
+                    </td>
                 {/each}
             </tr>
         {/each}
@@ -126,6 +133,10 @@
     .v-table--noborder {
         border-bottom: 1px solid var(--vscode-tree-tableColumnsBorder);
         border-collapse: collapse;
+    }
+
+    .v-table__hidden-columns {
+        display: none;
     }
 
     .v-table__header-wrapper {
